@@ -2,13 +2,14 @@ library("plyr")
 source("get_data_links.R")
 
 
-links_years <- list(links_2015, links_2016, links_2017)
 
-## create directory, if not yet existent
+## create data directory, if not yet existent
 if(!dir.exists("data/"))
   dir.create("data/")
 
 
+## function to extract a data.frame with start and end time of a 
+## given data set and the corresponding link
 get_available_timeslots <- function(links = links_2016) {
   
   lks <- links$delay
@@ -23,11 +24,13 @@ get_available_timeslots <- function(links = links_2016) {
              link = as.character(lks), stringsAsFactors = FALSE)
 }
 
+
+## get the time slots of data files for all three years currently available
 timeslots <- ldply(links_years, get_available_timeslots)
 timeslots$filename <- sapply(strsplit(timeslots$link, split = "/download/"), function(x) x[2])
 
 
-
+## function to download the data set containing a given date
 download_delay_data <- function(date, timeslots = timeslots) {
   
   thislink <- date >= timeslots$from & date <= timeslots$to
@@ -38,7 +41,10 @@ download_delay_data <- function(date, timeslots = timeslots) {
 
 
 ## pick a date and download the data set with the given date, e.g.
-download_delay_data(date = as.POSIXct("2016-02-18"), timeslots = timeslots)
+# download_delay_data(date = as.POSIXct("2016-05-18"), timeslots = timeslots)
+
+## download all available files !!! takes very long !!!
+# lapply(timeslots$from, download_delay_data, timeslots = timeslots)
 
 
 

@@ -22,6 +22,13 @@ get_data_links <- function(url = "https://data.stadt-zuerich.ch/dataset/vbz_fahr
   
 }
 
+
+## get the links for the three years available
 links_2015 <- get_data_links("https://data.stadt-zuerich.ch/dataset/vbz_fahrzeiten_ogd_2015")
 links_2016 <- get_data_links("https://data.stadt-zuerich.ch/dataset/vbz_fahrzeiten_ogd_2016")
 links_2017 <- get_data_links("https://data.stadt-zuerich.ch/dataset/vbz-fahrzeiten-ogd")
+
+## list with links lists
+links_years <- list(links_2015 = links_2015, links_2016 = links_2016, links_2017 = links_2017)
+
+

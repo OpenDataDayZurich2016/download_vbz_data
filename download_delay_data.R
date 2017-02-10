@@ -39,6 +39,7 @@ download_delay_data <- function(date, timeslots = timeslots) {
   
 }
 
+write.csv(timeslots, file = "data/timeslots_files.csv", row.names = FALSE)
 
 ## pick a date and download the data set with the given date, e.g.
 # download_delay_data(date = as.POSIXct("2016-05-18"), timeslots = timeslots)

@@ -31,7 +31,7 @@ timeslots$filename <- sapply(strsplit(timeslots$link, split = "/download/"), fun
 
 
 ## function to download the data set containing a given date
-download_delay_data <- function(date, timeslots = timeslots) {
+download_delay_data <- function(date, timeslots) {
   
   thislink <- date >= timeslots$from & date <= timeslots$to
   slot <- timeslots[thislink, ]

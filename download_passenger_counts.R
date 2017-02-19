@@ -6,3 +6,4 @@ zip_url = 'https://data.stadt-zuerich.ch/dataset/vbz_fahrgastzahlen_ogd/resource
 zip_filename = './data/passenger_counts.zip'
 download.file(zip_url, destfile=zip_filename)
 unzip(zip_filename, exdir='./data/passenger_counts/')
+unlink(zip_filename)

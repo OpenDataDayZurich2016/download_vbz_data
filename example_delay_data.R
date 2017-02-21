@@ -6,7 +6,7 @@ source("clean_delay_data.R")
 source("load_delay_data.R")
 
 ## load timeslots data.frame
-timeslots <- read.csv(file = "data/timeslots_files.csv", 
+timeslots <- read.csv(file = "data/delay_data/timeslots_files.csv", 
                       colClasses = c("factor", "POSIXct", "POSIXct", 
                                      "character", "character"))
 

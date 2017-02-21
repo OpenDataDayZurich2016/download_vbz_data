@@ -30,7 +30,7 @@ correct_classes_delaydata <- function(data) {
 # date <- as.POSIXlt("2016-05-18")
 # thisfile <- date >= timeslots$from & date <= timeslots$to
 # slot <- timeslots[thisfile, ]
-# dat0 <- read.csv(paste0("data/", slot$filename), stringsAsFactors = FALSE)
+# dat0 <- read.csv(paste0("data/delay_data", slot$filename), stringsAsFactors = FALSE)
 # dat <- correct_classes_delaydata(dat0)
 
 

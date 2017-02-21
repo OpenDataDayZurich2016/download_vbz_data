@@ -4,8 +4,8 @@ source("get_data_links.R")
 
 
 ## create data directory, if not yet existent
-if(!dir.exists("data/"))
-  dir.create("data/")
+if(!dir.exists("data/delay_data/"))
+  dir.create("data/delay_data/")
 
 
 ## function to extract a data.frame with start and end time of a 
@@ -35,11 +35,11 @@ download_delay_data <- function(date, timeslots) {
   
   thislink <- date >= timeslots$from & date <= timeslots$to
   slot <- timeslots[thislink, ]
-  download.file(slot$link, paste0("data/", slot$filename))
+  download.file(slot$link, paste0("data/delay_data/", slot$filename))
   
 }
 
-write.csv(timeslots, file = "data/timeslots_files.csv", row.names = FALSE)
+write.csv(timeslots, file = "data/delay_data/timeslots_files.csv", row.names = FALSE)
 
 ## pick a date and download the data set with the given date, e.g.
 # download_delay_data(date = as.POSIXct("2016-05-18"), timeslots = timeslots)

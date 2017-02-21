@@ -1,7 +1,7 @@
 ##' Create data.frames of a certain time frame.
 ##' This can take a while!!!
 ##' 
-##' Data needs to already be stored on your disk in folder data/ from working 
+##' Data needs to already be stored on your disk in folder data/delay_data/ from working 
 ##' directory.
 ##' 
 ##' @param from POSIXlt object with first timepoint to consider
@@ -31,13 +31,13 @@ import_clean_delaydata <- function(from = as.POSIXlt("2016-05-18 00:00:00 CEST")
   filenams <- slots$filename
   
   ## check if files are in data folder
-  if(!all(file.exists(paste0("data/", filenams)))) 
+  if(!all(file.exists(paste0("data/delay_data/", filenams)))) 
     stop("At least one the files \n", paste(filenams, collapse = "\n"), 
-         "\nis not in the folder ", getwd(), "/data/",
+         "\nis not in the folder ", getwd(), "/data/delay_data/",
          "\nplease download from \n", paste(slots$link, collapse = "\n"))
   
   ## load and clean data
-  dat0 <- ldply(paste0("data/", filenams), read.csv, 
+  dat0 <- ldply(paste0("data/delay_data/", filenams), read.csv, 
                 stringsAsFactors = FALSE, .progress = "text")
   dat <- correct_classes_delaydata(dat0)
   

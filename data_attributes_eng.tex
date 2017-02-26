@@ -1,0 +1,332 @@
+\documentclass[11pt]{article}
+\usepackage[left=21mm, right=18mm, top=20mm, bottom=18mm]{geometry}
+%\linespread{1.4}
+
+\usepackage{url}
+
+\usepackage[sfdefault,lf]{carlito}
+\usepackage[T1]{fontenc}
+\renewcommand*\oldstylenums[1]{\carlitoOsF #1}
+
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0.4pt}% Default \headrulewidth is 0.4pt
+\renewcommand{\footrulewidth}{0.4pt}% Default \footrulewidth is 0pt
+\lhead{ODD Hackathon Z\"{u}rich 2017: Translation of Data Attibutes} 
+\rhead{Zurich R User Meetup Group}
+\cfoot{\thepage\ of \pageref{LastPage}}
+%\rfoot{ }
+%\lfoot{ }
+\pagestyle{fancy}
+
+
+\author{Zurich R User Meetup Group}
+\date{\today}
+\title{\vspace{-3ex} \textbf{Attributes (in English)} \\
+	\normalsize \url{https://data.stadt-zuerich.ch/dataset/vbz-fahrzeiten-ogd}}
+\date{March 4, 2017}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+% scheduled time
+% real time
+% Jede Zeit kommt zwei Mal im Datatset vor, aber nicht die erste und
+% nicht die letzte Haltestelle
+
+% time arriving: seconds after midnight
+
+\paragraph{Notes and abbreviations}
+\begin{itemize}
+	\item For consistency, we do not differentiate between bus / tram stops and stations. We always define it as \textbf{station}.
+	\item Given \textbf{in seconds} means given in seconds after midnight.
+	\item One trip accounts the travel time from the first stop to the terminal stop.
+	\item \textbf{VBZ}: Zurich Public Transport / Verkehrsbetriebe Z\"{u}rich
+\end{itemize}
+
+\paragraph{Attributes}
+\begin{itemize}
+
+	\item \textbf{linie}: line number / Liniennummer
+	
+	The VBZ internally used line number (partly not identical to the published line number). 
+	
+	data type: (smallint, 3).
+	
+	\item \textbf{richtung}: Direction / Richtung
+	
+	The direction of a ride. levels: 1 / 2.
+	
+	data type: (tinyint, 1).
+	
+	\item \textbf{betriebsdatum}: Operating date / Betriebsdatum
+	
+	The date for the event. Working day: 5am to 01:30 am (next day).
+	
+	data type: (datetime, 8).
+	
+	\item \textbf{fahrzeug}: vehicle number / Fahrzeugnummer
+	
+	The VBZ internally used vehicle number.
+	
+	data type: (int, 10).
+	
+	\item \textbf{kurs}: route number / Kursnummer
+	
+	The VBZ internally used route number.
+	
+	data type: (tinyint, 2).
+	
+	\item \textbf{seq\_von}: sequence of the ``from''-station / Sequenz der Haltestelle von 
+	
+	The sequence of the ``from''-station of a trip.
+
+	data type: (int, 10).
+	
+	\item \textbf{halt\_diva\_von}: station number DIVA ``from'' / Haltestellennummer DIVA von
+	
+	The VBZ internally used station number DIVA of the ``from''-station.
+	
+	data type: (int, 10).
+	
+	\item \textbf{halt\_punkt\_diva\_von}: number for stopping point ``from'' / Haltepunktnummer from
+	
+	The VBZ internally used number for the stopping point ``from''.
+	
+	data type: (int, 10).
+	
+	\item \textbf{halt\_kurz\_von1}: short code for ``from''-station / Kurzcode Haltestelle from
+	
+	The VBZ internally used abbreviation for the station number of the ``from''-station.
+	
+	data type: (varchar(8)).
+	
+	\item \textbf{datum\_von}: date of / Datum von 
+	
+	The date for the event of the ``from''-station. Working day: 5am to 01:30 am (next day).
+	
+	data type: (datetime, 8).
+	
+	\item \textbf{soll\_an\_von}: scheduled arrival time ``from'' / Sollankunft von
+	
+	The scheduled arrival time at the ``from''-station in seconds.
+	
+	data type: (int, 10).
+	
+	\item \textbf{ist\_an\_von}: real arrival time ``from'' / Istankunft von
+	
+	The real arrival time at the ``from''-station in seconds.
+	
+	data type: (int, 10).
+	
+	\item \textbf{soll\_ab\_von}: scheduled departure time ``from'' / Sollabfahrt
+	von
+	
+	The scheduled departure time at the ``from''-station in seconds.
+	
+	data type: (int, 10).
+	
+	\item \textbf{ist\_ab\_von}: real departure time ``from'' / Istabfahrt von
+
+	The real departure time at the ``from''-station in seconds.
+	
+	data type: (int, 10).
+	
+	\item \textbf{seq\_nach}: sequence of the ``to''-station / Sequenz der Haltestelle nach
+	
+	The sequence of the ``to''-station of a trip.
+	
+	data type: (int, 10).
+	
+	\item \textbf{halt\_diva\_nach}: station number DIVA ``to'' / Haltestellennummer DIVA nach
+	
+	The VBZ internally used station number DIVA for the ``to''-station.
+	
+	data type: (int, 10).
+	
+	\item \textbf{halt\_punkt\_diva\_nach}: stopping point DIVA ``to'' / Haltepunktnummer DIVA nach (technisch: )
+	
+	The VBZ internally used number for the stopping point DIVA of the  ``to''-station.
+	
+	data type: (int, 10).
+	
+	\item \textbf{halt\_kurz\_nach1}: short code for ``to''-station / Kurzcode Haltestelle nach
+	
+	The VBZ internally used abbrevation for the station number of the ``to''-station.
+	
+	data type: (varchar(8)).
+	
+	\item \textbf{datum\_nach}: date to / Datum nach
+	
+	The date for the event of the  ``to''-station. Working day: 5am to 01:30am (next day).
+	
+	data type: (datetime, 8).
+	
+	\item \textbf{soll\_an\_nach}: scheduled arrival time ``to'' / Sollankunft nach
+	
+	The scheduled arrival time at the ``to''-station in seconds.
+	
+	data type: (int, 10).
+	
+	\item \textbf{ist\_an\_nach1}: real arrival time ``to'' / Istankunft nach
+	
+	The real arrival time at the ``to''-station in seconds.
+	
+	data type: (int, 10).
+	
+	\item \textbf{soll\_ab\_nach}: scheduled departure time ``to'' / Sollabfahrt nach
+	
+	The scheduled departure time at the ``to''-station in seconds.
+	
+	data type: (int, 10).
+	
+	\item \textbf{ist\_ab\_nach}: real departure time ``to'' / Istabfahrt nach
+	
+	The real departure time at the ``to''-station in seconds.
+	
+	data type: (int, 10).
+	
+	\item \textbf{fahrt\_id}: trip ID / Fahrt ID
+	
+	The VBZ internally used trip ID per days of operation. One trip accounts the travel time from the first stop to the terminal stop.
+	
+	data type: (bigint, 19).
+	
+	\item \textbf{fahrweg\_id}: route ID / Fahrweg ID
+	
+	The VBZ internally used foreign key for the ``Fahrwegstamm'' table.
+	
+	data type: (bigint, 19).
+	
+	\item \textbf{fw\_no}: route number / Fahrwegnummer
+	
+	The VBZ internally used route number.
+	
+	data type: (smallint, 5).
+	
+	\item \textbf{fw\_typ}: route type / Fahrwegtyp
+	
+	The VBZ internally used route type.
+	
+	data type: (tinyint, 1).
+	
+	\item \textbf{fw\_kurz}: short code for route / Fahrweg Kurzcode
+	
+	The VBZ internally used abbreviation for route.
+	
+	data type: (varchar(6)).
+	
+	\item \textbf{fw\_lang}: route labelling / Fahrwegbezeichnung
+	
+	The VBZ internally used route labelling.
+	
+	data type: (varchar(40)).
+	
+	\item \textbf{umlauf\_von}: circulation number / Umlaufnummer
+	
+	The VBZ internally used ID for a circulation of trips per day of operation. In other words, all the trips that are made by the one vehicle during the time from leaving the depot until returning to the depot have the same circulation number.
+	
+	data type: (bigint, 19).
+	
+	\item \textbf{halt\_id\_von}: station ID ``from'' / Halt ID von
+	
+	The VBZ internally used foreign key for the ``Haltestellenstamm'' table (halt\_id). Assignment of the ``from''-station. 
+	
+	data type: (bigint, 19).
+	
+	\item \textbf{halt\_id\_nach}: station ID ``to'' / Halt ID nach
+	
+	The VBZ internally used foreign key for the ``Haltestellenstamm'' table (halt\_id). Assignment of the ``to''-station.
+	
+	data type: (bigint, 19).
+	
+	\item \textbf{halt\_punkt\_id\_von}: stopping point ID ``from'' / Haltepunkt ID von
+	
+	The VBZ internally used foreign key for the ``Haltepunktstamm'' table (halt\_punkt\_id). Assignment of the ``from''-station.
+	
+	data type: (bigint, 19).
+	
+	\item \textbf{halt\_punkt\_id\_nach}: stopping point ID ``to'' / Haltepunkt ID nach
+	
+	The VBZ internally used foreign key for the ``Haltepunktstamm'' table (halt\_punkt\_id). Assignment of the ``to''-station.
+
+	data type: (bigint, 19).
+	
+	\item \textbf{halt\_punkt\_id}: stopping point ID / Haltepunkt ID
+	
+	Key field station.
+	
+	data type: (bigint, 19).
+	
+	\item \textbf{halt\_punkt\_diva}: stopping point number DIVA / Haltepunktnummer DIVA
+	
+	The VBZ internally used stopping point number (redundant in Fahrzeiten\_SOLL\_IST). Values: 0 -- 99.
+	
+	data type: (int, 2).
+	
+	\item \textbf{halt\_id}: station ID / Haltestelle ID (technisch: )
+	
+	key field station ID.
+	
+	data type: (bigint, 19).
+	
+	\item \textbf{GPS\_Latitude}: y-coordinate / Y-Koordinate
+	
+	The y-coordinate (geographic latitude) of the station in WGS84.
+	
+	data type: (int, 10).
+	
+	\item \textbf{GPS\_Longitude}: x-coordinate / X-Koordinate
+	
+	The x-coordinate (geographic longitude) of the station in WGS84.
+	
+	data type: (int, 10).
+	
+	\item \textbf{GPS\_Bearing}: compass' direction / Kompassrichtung
+	
+	The compass' direction of the station.
+	
+	data type: (int, 10).
+	
+	\item \textbf{halt\_punkt\_ist\_aktiv}: status of the station / Haltepunktstatus
+	
+	Status of the station active / inactive. levels: true / false.
+	
+	data type: (boolean: bit, 1).
+	
+	\item \textbf{halt\_id1}: station ID / Haltestelle ID
+	
+	key variable of ``Haltestelle'' table
+		
+	data type: (bigint, 19).
+
+	\item \textbf{halt\_diva}: station number DIVA / Haltestellennummer DIVA
+	
+	The VBZ internally used station number DIVA.
+	
+	data type: (int, 10).
+	
+	\item \textbf{halt\_kurz}: short code for station / Haltestelle Kurzcode
+	
+	The VBZ internally used abbreviation for the station number.
+	
+	data type: (varchar(8)).
+	
+	\item \textbf{halt\_lang}: station description / Haltestelle Beschreibung
+	
+	Description of the station.
+	
+	data type: (varchar(40)).
+	
+	\item \textbf{halt\_ist\_aktiv}: station status / Haltstellenstatus
+	
+	Station active / inactive. levels: true / false.
+	
+	data type: (boolean: bit, 1).
+	
+	
+\end{itemize}
+
+\end{document}
